@@ -30,6 +30,13 @@ def index(request):
         horario_chegada__month=mes_atual
     )
 
+    search = request.GET.get('visitantes-search')
+    # import ipdb
+    # ipdb.set_trace()
+    if search:
+        todos_visitantes=todos_visitantes.filter(nome_completo__icontains=search)
+
+
     context = {
         "nome_pagina": "Início da dashboard",
         "todos_visitantes": todos_visitantes,
