@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from visitantes.models import Visitante
@@ -31,8 +32,6 @@ def index(request):
     )
 
     search = request.GET.get('visitantes-search')
-    # import ipdb
-    # ipdb.set_trace()
     if search:
         todos_visitantes=todos_visitantes.filter(nome_completo__icontains=search)
 
@@ -46,5 +45,23 @@ def index(request):
         "visitantes_mes": visitantes_mes.count(),
     }
 
+
     return render(request, "index.html", context)
+
+@login_required
+def visitantes_aguardando(request):
+    todos_visitantes = Visitante.objects.order_by(
+        "-horario_chegada"
+    )
+    visit_aguardando = todos_visitantes.filter(
+    status="AGUARDANDO"
+    )
+    nome_pagina = "lista_visitantes_aguardando"
+    context = {
+        "total_visitantes_aguardando": visit_aguardando.count(),
+        "visitantes_aguardando": visit_aguardando,
+        "nome_pagina": nome_pagina
+    }
+
+    return render(request, "visitantes_aguardando.html", context )
     
