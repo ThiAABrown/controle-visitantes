@@ -56,7 +56,7 @@ def visitantes_aguardando(request):
     visit_aguardando = todos_visitantes.filter(
     status="AGUARDANDO"
     )
-    nome_pagina = "lista_visitantes_aguardando"
+    nome_pagina = "Visitantes aguardando autorizção"
     context = {
         "total_visitantes_aguardando": visit_aguardando.count(),
         "visitantes_aguardando": visit_aguardando,
@@ -64,4 +64,20 @@ def visitantes_aguardando(request):
     }
 
     return render(request, "visitantes_aguardando.html", context )
-    
+
+@login_required
+def visitantes_emvisita(request):
+    todos_visitantes = Visitante.objects.order_by(
+        "-horario_chegada"
+    )
+    visit_emvisita = todos_visitantes.filter(
+    status="EM_VISITA"
+    )
+    nome_pagina = "Visitantes em visita"
+    context = {
+        "total_visitantes_em_visita": visit_emvisita.count(),
+        "visitantes_emvisita": visit_emvisita,
+        "nome_pagina": nome_pagina
+    }
+
+    return render(request, "visitantes_emvisita.html", context )
