@@ -81,3 +81,20 @@ def visitantes_emvisita(request):
     }
 
     return render(request, "visitantes_emvisita.html", context )
+
+@login_required
+def visitantes_finalizados(request):
+    todos_visitantes = Visitante.objects.order_by(
+        "-horario_chegada"
+    )
+    visit_finalizados = todos_visitantes.filter(
+    status="FINALIZADO"
+    )
+    nome_pagina = "Visitas finalizadas"
+    context = {
+        "total_visitantes_finalizados": visit_finalizados.count(),
+        "visitantes_finalizados": visit_finalizados,
+        "nome_pagina": nome_pagina
+    }
+
+    return render(request, "visitas_finalizadas.html", context )
