@@ -98,3 +98,24 @@ def visitantes_finalizados(request):
     }
 
     return render(request, "visitas_finalizadas.html", context )
+
+@login_required
+def visitantes_registrados_mesatual(request):
+    todos_visitantes = Visitante.objects.order_by(
+        "-horario_chegada"
+    )
+
+    hora_atual = timezone.now()
+    mes_atual = hora_atual.month
+
+    visit_mes = todos_visitantes.filter(
+    horario_chegada__month=mes_atual
+    )
+    nome_pagina = "Visitantes no mês"
+    context = {
+        "total_visitantes_mesatual": visit_mes.count(),
+        "visitantes_mesatual": visit_mes,
+        "nome_pagina": nome_pagina
+    }
+
+    return render(request, "visitantes_mesatual.html", context )

@@ -8,7 +8,7 @@ from dashboard.views import index
 from visitantes.views import (
     registrar_visitante, informacoes_visitante, finalizar_visita
 )
-from dashboard.views import visitantes_aguardando, visitantes_emvisita, visitantes_finalizados
+from dashboard.views import visitantes_aguardando, visitantes_emvisita, visitantes_finalizados, visitantes_registrados_mesatual
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -69,6 +69,12 @@ urlpatterns = [
         "visitas-finalizadas/",
         visitantes_finalizados,
         name="visitantes_finalizados",
+    ),
+
+    path(
+        "visitantes-registrados-mes-atual/",
+        visitantes_registrados_mesatual,
+        name="visitantes_registrados_mesatual",
     ),
 ]
 
