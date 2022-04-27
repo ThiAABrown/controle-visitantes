@@ -56,7 +56,7 @@ def visitantes_aguardando(request):
     visit_aguardando = todos_visitantes.filter(
     status="AGUARDANDO"
     )
-    nome_pagina = "Visitantes aguardando autorizção"
+    nome_pagina = "Visitantes aguardando autorização"
     context = {
         "total_visitantes_aguardando": visit_aguardando.count(),
         "visitantes_aguardando": visit_aguardando,

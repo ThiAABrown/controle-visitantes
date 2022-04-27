@@ -1,11 +1,10 @@
-def validar_cpf():
-    cpf = list(map(int, input("Digite seu CPF: ")))
+def validar_cpf(cpf): 
     
     cpf_vali = cpf[0:9]
 
     soma1 = 0 
     for pos, numero in enumerate(cpf_vali):
-       
+    
         mult = numero * (pos + 1)
         soma1 = soma1 + mult
 
@@ -29,6 +28,3 @@ def validar_cpf():
     else:
         cpf_vali.append(segundo_digito)
         print("CPF VÁLIDO")
-
-
-validar_cpf()
