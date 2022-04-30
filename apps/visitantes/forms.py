@@ -12,7 +12,7 @@ class VisitanteForm(forms.ModelForm):
             "nome_completo": {
                 "required": "O nome completo do visitante é obrigatório para o registro."
             },
-             "cpf": {
+            "cpf": {
                 "required": "O CPF do visitante é obrigatório para o registro."
             },
             "data_nascimento": {

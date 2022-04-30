@@ -1,5 +1,6 @@
 from django.db import models
-
+from helpers.verificar_cpf import validar_cpf
+from django.core.exceptions import ValidationError
 class Visitante(models.Model):
 
     STATUS_VISITANTE = [
@@ -72,6 +73,14 @@ class Visitante(models.Model):
         verbose_name="Porteiro responsavel pelo registro",
         on_delete=models.PROTECT
     )
+
+    def clean(self):
+        
+        cpf_verificado = validar_cpf(self.cpf)
+
+        if cpf_verificado == False:
+            raise ValidationError('CPF digitado inválido')
+
 
     def get_horario_saida(self):
         if self.horario_saida:

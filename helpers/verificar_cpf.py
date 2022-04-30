@@ -1,5 +1,12 @@
 def validar_cpf(cpf): 
-    
+
+    cpf = [int(digit) for digit in cpf]
+
+    numeros_repetidos = set(cpf)
+
+    if len(numeros_repetidos) == 1:
+        return False
+
     cpf_vali = cpf[0:9]
 
     soma1 = 0 
@@ -12,7 +19,7 @@ def validar_cpf(cpf):
 
     if primeiro_digito != cpf[9]:
         print("CPF INVÁLIDO")
-                
+        return False
     else:
         cpf_vali.append(primeiro_digito)
         
@@ -25,6 +32,8 @@ def validar_cpf(cpf):
 
     if segundo_digito != cpf[10]:
         print("CPF INVÁLIDO")
+        return False
     else:
         cpf_vali.append(segundo_digito)
         print("CPF VÁLIDO")
+        return True
