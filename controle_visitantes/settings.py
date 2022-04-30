@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     'widget_tweaks',
+    'copyright',
 ]
 
 INSTALLED_APPS += [
@@ -129,3 +130,4 @@ STATICFILES_DIRS = [
 
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "index"
+COPY_START_YEAR = 2020
